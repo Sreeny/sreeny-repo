@@ -43,33 +43,13 @@ public class QuizControllerTest {
     @Test
     public void testGetQuizList() throws Exception{
             //setup Data
-            Integer amount =  new Integer(5);
-            Integer category = new Integer(11);
+          
 
             //Mock data
 
-            Quiz quiz1 = new Quiz();
-
-            quiz1.setResponseCode(0);
-            Result result =  new Result();
-            result.setCategory("Entertainment");
-            result.setType("multiple");
-            result.setDifficulty("hard");
-            result.setQuestion("Which was the first of Alfred Hitchcock&amp;#039;s movies to be filmed in colour?");
-            result.setIncorrectAnswers(Arrays.asList("Psycho","Vertigo","Rebecca"));
-            result.setCorrectAnswer("Rope");
-            CompletableFuture<Quiz> completableFuture = CompletableFuture.completedFuture(quiz1);
-
-            Mockito.mockStatic(CompletableFuture.class);
-
-            quiz1.setResults(Arrays.asList(result));
-            Mockito.doReturn(completableFuture).when(quizAPIDataService).findQuizByAmountAndCategory(amount, category);
-            Mockito.doReturn(ResponseEntity.ok().build()).when(quizController).getQuizList();
 
             // Expected Data
-           ResponseEntity<QuizResponseDto>  responseEntity =  quizController.getQuizList();
-            verify(quizAPIDataService, times(1)).findQuizByAmountAndCategory(any(Integer.class), any(Integer.class));
-           assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+
 
 
         }
