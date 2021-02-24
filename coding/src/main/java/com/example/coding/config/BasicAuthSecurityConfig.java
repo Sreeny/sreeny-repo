@@ -17,10 +17,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class BasicAuthSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final Logger logger = LoggerFactory.getLogger(BasicAuthSecurityConfig.class);
+
     @Override
-    protected void configure(HttpSecurity http) throws Exception
-    {
-                http
+    protected void configure(HttpSecurity http) throws Exception {
+        http
                 .authorizeRequests()
                 .anyRequest()
                 .authenticated().
@@ -30,14 +30,14 @@ public class BasicAuthSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder)
-            throws Exception
-    {
+            throws Exception {
         logger.info("authenticating the user");
         authenticationManagerBuilder.inMemoryAuthentication()
                 .withUser("admin")
                 .password(passwordEncoder().encode("mypassword"))
                 .roles("USER");
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

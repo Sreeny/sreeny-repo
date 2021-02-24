@@ -11,11 +11,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class CodingExerciseExceptionHandler extends ResponseEntityExceptionHandler {
 
-@ExceptionHandler(Exception.class)
-@ResponseBody
-public final ResponseEntity<QuizResponseDto> handleException (Exception ex) {
-    logger.error("An Exception occurred, " +ex.getMessage());
-return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-}
+    @ExceptionHandler(Exception.class)
+    @ResponseBody
+    public final ResponseEntity<QuizResponseDto> handleException(Exception ex) {
+        logger.error("An Exception occurred, " + ex.getMessage());
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 
 }

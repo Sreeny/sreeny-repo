@@ -27,6 +27,7 @@ import java.util.concurrent.CompletableFuture;
 public class QuizController {
 
     private static final Logger logger = LoggerFactory.getLogger(QuizController.class);
+
     @Autowired
     private QuizDataService quizDataService;
 
@@ -38,15 +39,13 @@ public class QuizController {
         CompletableFuture<Quiz> quiz2 = quizDataService.findQuizByAmountAndCategory(5, 12);
         CompletableFuture.allOf(quiz1, quiz2).join();
         List<Result> resultList = new ArrayList<Result>();
-
-        if (quiz1 == null || quiz1.get() == null || quiz1.get().getResponseCode() != 0) {
-           logger.error("Can not get quiz for amount = 5 and category 11");
-           throw  new Exception("Can not get quiz for amount =5 and category 11");
+        if (quiz1 == null || quiz1.get() == null || quiz1.get().getResponseCode() == null || quiz1.get().getResponseCode() != 0) {
+            logger.error("Can not get quiz for amount = 5 and category 11");
+            throw new Exception("Can not get quiz for amount =5 and category 11");
         }
-
-        if (quiz2 == null || quiz2.get() == null || quiz2.get().getResponseCode() != 0) {
+        if (quiz2 == null || quiz2.get() == null || quiz2.get() == null || quiz2.get().getResponseCode() != 0) {
             logger.error("Can not get quiz for amount = 5 and category 12");
-            throw  new Exception("Can not get quiz for amount =5 and category 12");
+            throw new Exception("Can not get quiz for amount =5 and category 12");
         }
 
         resultList.addAll(quiz1.get().results);
@@ -60,6 +59,5 @@ public class QuizController {
 
         logger.info("Exit getQuizList of QuizController and getting quiz list");
         return ResponseEntity.ok().body(new QuizResponseDto(ModelMapper.convertQuizEntityListToQuizDtoList(resultList)));
-
     }
 }

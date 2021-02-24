@@ -2,13 +2,10 @@ package com.example.coding.mapper;
 
 import com.example.coding.dto.QuizDto;
 import com.example.coding.dto.ResultDto;
-import com.example.coding.model.Quiz;
 import com.example.coding.model.Result;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
